@@ -130,9 +130,11 @@ public class Pessoa {
         switch (parametro){
             case "Estudante":
                 Estudante novoE = new Estudante(nome, cpf, codigo);
+                novoE.vazio();
                 break;
             case "Professor":
                 Professor novoP = new Professor(nome, cpf, codigo);
+                novoP.vazio();
                 break;
             }
     }

@@ -46,6 +46,10 @@ public class Estudante extends Pessoa{
         excluirPessoa(estudantes, excluir);
     }
 
+    void vazio(){
+
+    }
+
 }
 
 //         for (Estudante e : estudantes){

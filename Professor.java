@@ -46,4 +46,8 @@ public class Professor extends Pessoa{
         return codigo;
     }
 
+    void vazio(){
+        
+    }
+
 }
