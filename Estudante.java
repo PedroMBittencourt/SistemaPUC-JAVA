@@ -5,22 +5,18 @@ import java.util.ArrayList;
 public class Estudante extends Pessoa{
     public static ArrayList<Estudante> estudantes = new ArrayList<>();
 
-    public Estudante(String nome, String cpf, int codigo){
-        super(nome, cpf, codigo);
+    public Estudante(String nome, int codigo, String cpf){
+        super(nome, codigo, cpf);
         this.imprimir();
-        verificarCadastro(this);
-    }
-
-    private void verificarCadastro(Estudante estudante){
-        verificarCadastro(estudantes, estudante);
+        verificarCadastro(estudantes, this);
     }
 
     static void imprimirLista(){
-        imprimirLista(estudantes);
+        imprimirPessoas(estudantes);
     }
 
     private static Estudante getEstudante(int codigo){
-        return getPessoa(estudantes, codigo);
+        return getCadastro(estudantes, codigo);
     }
 
     protected static int selecionaEstudante(){
@@ -43,13 +39,8 @@ public class Estudante extends Pessoa{
         if (excluir == null){
             System.out.println("\nEstudante não encontrado no sistema. ");
         } else
-        excluirPessoa(estudantes, excluir);
-    }
-
-    void vazio(){
-
-    }
-
+        excluirCadastro(estudantes, excluir);
+        }
 }
 
 //         for (Estudante e : estudantes){

@@ -5,22 +5,25 @@ import java.util.ArrayList;
 public class Professor extends Pessoa{
     public static ArrayList<Professor> professores = new ArrayList<Professor>();
 
-    public Professor(String nome, String cpf, int codigo){
-        super(nome, cpf, codigo);
+    public Professor(String nome, int codigo, String cpf){
+        super(nome, codigo, cpf);
         this.imprimir();
-        verificarCadastro(this);
-    }
-
-    private void verificarCadastro(Professor professor){
-        verificarCadastro(professores, professor);
+        verificarCadastro(professores, this);
     }
 
     static void imprimirLista(){
-        Pessoa.imprimirLista(professores);
+        imprimirPessoas(professores);
     }
 
     private static Professor getProfessor(int codigo){
-        return Pessoa.getPessoa(professores, codigo);
+        return getCadastro(professores, codigo);
+    }
+
+    protected static int selecionaProfessor(){
+        System.out.println("Confira a lista de professores cadastrados: ");
+        Professor.imprimirLista();
+        int codigo = inputCodigo();
+        return codigo;
     }
 
     static void editarProfessor(int codigo){
@@ -36,18 +39,7 @@ public class Professor extends Pessoa{
         if (excluir == null){
             System.out.println("\nProfessor não encontrado no sistema. ");
         } else
-        excluirPessoa(professores, excluir);
-    }
-
-    protected static int selecionaProfessor(){
-        System.out.println("Confira a lista de professores cadastrados: ");
-        Professor.imprimirLista();
-        int codigo = inputCodigo();
-        return codigo;
-    }
-
-    void vazio(){
-        
+        excluirCadastro(professores, excluir);
     }
 
 }
