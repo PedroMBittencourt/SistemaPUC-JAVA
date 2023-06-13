@@ -64,24 +64,24 @@ public class Pessoa {
     }
 
     protected static <T extends Pessoa> void editarPessoa(T pessoa){
-        System.out.println("Confira o estudante para ser editado: \n");
+        System.out.println("Confira o cadastro para ser editado: \n");
         pessoa.imprimir();
-        System.out.println("\nDigite o novo nome do aluno: ");
+        System.out.println("\nDigite o novo nome: ");
         leitor.nextLine();
         pessoa.nome = leitor.nextLine();
-        System.out.println("Digite o novo CPF do aluno: ");
+        System.out.println("Digite o novo CPF: ");
         pessoa.cpf = leitor.nextLine();
         pessoa.imprimir();
     }
 
     protected static <T extends Pessoa> void excluirPessoa(ArrayList<T> pessoas, T pessoa){
-        System.out.println("Confira o estudante para ser excluido: ");
+        System.out.println("Confira o cadastro para ser excluido: ");
         pessoa.imprimir();
         System.out.println("Deseja excluir? (s/n)");
         String confirma = leitor.nextLine();
         if (confirma.equalsIgnoreCase("s")){
             pessoas.remove(pessoa);
-            System.out.println("\nEstudante removido com sucesso.");
+            System.out.println("\nCadastro removido com sucesso.");
             System.out.println("\nAperte ENTER para continuar. ");
             leitor.nextLine();
         } else{
@@ -94,7 +94,7 @@ public class Pessoa {
 
     private static String inputNome(){
         String nome;
-        System.out.println("Digite o nome para adicionar ao cadastrado: ");
+        System.out.println("Digite o nome para adicionar ao cadastro: ");
         nome = leitor.nextLine();
         return nome;
     }
