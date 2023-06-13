@@ -92,14 +92,14 @@ public class Pessoa {
 
     }
 
-    private static String inputNome(){
+    protected static String inputNome(){
         String nome;
         System.out.println("Digite o nome para adicionar ao cadastro: ");
         nome = leitor.nextLine();
         return nome;
     }
 
-    private static String inputCPF(){
+    protected static String inputCPF(){
         String cpf;
         System.out.println("Digite o CPF: ");
         cpf = leitor.nextLine();
