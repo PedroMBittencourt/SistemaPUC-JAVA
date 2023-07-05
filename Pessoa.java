@@ -3,6 +3,8 @@ package SisPUC;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class Pessoa extends Cadastro{
     protected String cpf;
     protected static Scanner leitor = new Scanner(System.in);
@@ -14,35 +16,34 @@ public class Pessoa extends Cadastro{
 
     @Override
     protected void imprimir(){
-        System.out.println("Código de matrícula: " + this.codigo + 
+        JOptionPane.showMessageDialog(null,"Código de matrícula: " + this.codigo + 
                             " Nome: " + this.nome + " CPF: " + this.cpf);
 
     }
 
     protected static <T extends Pessoa> void imprimirPessoas(ArrayList<T> pessoas){
+        String listaTotal = "";
         if (pessoas.isEmpty()){
-            System.out.println("\nNão há cadastros no sistema. ");
+            JOptionPane.showMessageDialog(null,"\nNão há cadastros no sistema. ");
         } else for(T pessoa : pessoas){
-            System.out.println("Código de matrícula: " + pessoa.codigo + 
-            " Nome: " + pessoa.nome + " CPF: " + pessoa.cpf);
+            String lista = "Código de matrícula: " + pessoa.codigo + " Nome: " + pessoa.nome + " CPF: " + pessoa.cpf;
+            listaTotal += lista + "\n";
         }
+        JOptionPane.showMessageDialog(null, listaTotal);
     }
 
     protected static <T extends Pessoa> void editarPessoa(T pessoa){
-        System.out.println("Confira o cadastro para ser editado: \n");
+        JOptionPane.showMessageDialog(null,"Confira o cadastro para ser editado: \n");
         pessoa.imprimir();
-        System.out.println("\nDigite o novo nome: ");
-        pessoa.nome = leitor.nextLine();
-        System.out.println("Digite o novo CPF: ");
-        pessoa.cpf = leitor.nextLine();
+        pessoa.nome = JOptionPane.showInputDialog("\nDigite o novo nome: ");
+        pessoa.cpf = JOptionPane.showInputDialog("\nDigite o novo CPF: ");
         pessoa.imprimir();
     }
 
 
     protected static String inputCPF(){
         String cpf;
-        System.out.println("Digite o CPF: ");
-        cpf = leitor.nextLine();
+        cpf = JOptionPane.showInputDialog("\nDigite o novo CPF: ");
         return cpf;
     }
 

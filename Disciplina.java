@@ -1,5 +1,7 @@
 package SisPUC;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 
 public class Disciplina extends Cadastro{
     public static ArrayList<Disciplina> disciplinas = new ArrayList<>();
@@ -19,7 +21,7 @@ public class Disciplina extends Cadastro{
     }
 
     protected static int selecionaDisciplina(){
-        System.out.println("\nConfira a lista de disciplinas cadastradas: ");
+        JOptionPane.showMessageDialog(null,"\nConfira a lista de disciplinas cadastradas: ");
         Disciplina.imprimirLista();
         int codigo = inputCodigo();
         return codigo;
@@ -28,7 +30,7 @@ public class Disciplina extends Cadastro{
     static void editarDisciplina(int codigo){
         Disciplina editar = getDisciplina(codigo);
         if (editar == null){
-            System.out.println("\nDisciplina não encontrada no sistema. ");
+            JOptionPane.showMessageDialog(null,"\nDisciplina não encontrada no sistema. ");
         } else
         editarCadastro(editar);
     }
@@ -36,7 +38,7 @@ public class Disciplina extends Cadastro{
     static void excluirDisciplina(int codigo){
         Disciplina excluir = getDisciplina(codigo);
         if (excluir == null){
-            System.out.println("\nDisciplina não encontrada no sistema. ");
+            JOptionPane.showMessageDialog(null,"\nDisciplina não encontrada no sistema. ");
         } else
         excluirCadastro(disciplinas, excluir);
     }

@@ -1,7 +1,8 @@
 package SisPUC;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
+import javax.swing.JOptionPane;
+
 
 public class Cadastro {
     protected String nome;
@@ -14,7 +15,7 @@ public class Cadastro {
     }
 
     protected void imprimir(){
-        System.out.println("Nome: " + this.nome + " Código: " + this.codigo);
+        JOptionPane.showMessageDialog(null, "Nome: " + this.nome + " Código: " + this.codigo);
     }
 
     protected static <T extends Cadastro> T getCadastro(ArrayList<T> cadastros, int codigo){
@@ -27,11 +28,13 @@ public class Cadastro {
     }
 
     protected static <T extends Cadastro> void imprimirLista(ArrayList<T> cadastros){
+        String listaTotal = "";
         if (cadastros.isEmpty()){
-            System.out.println("\nNão há cadastros no sistema. ");
+            JOptionPane.showMessageDialog(null,"\nNão há cadastros no sistema. ");
         } else for (T cadastro : cadastros){
-            System.out.println("Nome: " + cadastro.nome + " Código: " + cadastro.codigo);
-        }
+            String lista = "Nome: " + cadastro.nome + " Código: " + cadastro.codigo;
+            listaTotal += lista + "\n";
+        } JOptionPane.showMessageDialog(null, listaTotal);
     }
 
     protected static <T extends Cadastro> void verificarCadastro(ArrayList<T> cadastros, T cadastro){
@@ -39,68 +42,47 @@ public class Cadastro {
     for(T c : cadastros){
         if(c.codigo == cadastro.codigo){
             cadastrado = true;
-            System.out.println("\nCódigo já cadastrado no sistema. Confira os dados: ");
+            JOptionPane.showMessageDialog(null,"\nCódigo já cadastrado no sistema. Confira os dados: ");
             c.imprimir();
-            System.out.println("\nAperte ENTER para continuar. ");
-            leitor.nextLine();
-            leitor.nextLine();
             break;
         }
     }
     if (!cadastrado){
         cadastros.add(cadastro);
-        System.out.println("\nCadastro realizado com sucesso.");
-        System.out.println("\nAperte ENTER para continuar. ");
-        leitor.nextLine();
-        leitor.nextLine();
-
+        JOptionPane.showMessageDialog(null,"\nCadastro realizado com sucesso.");
     }
     }
 
     protected static <T extends Cadastro> void editarCadastro(T cadastro){
-        System.out.println("Confira o cadastro para ser editado: \n");
+        JOptionPane.showMessageDialog(null,"Confira o cadastro para ser editado: \n");
         cadastro.imprimir();
-        System.out.println("\nDigite o novo nome: ");
-        leitor.nextLine();
-        cadastro.nome = leitor.nextLine();
+        cadastro.nome = JOptionPane.showInputDialog("\nDigite o novo nome: ");
         cadastro.imprimir();
     }
 
     protected static <T extends Cadastro> void excluirCadastro(ArrayList<T> cadastros, T cadastro){
-        System.out.println("\nConfira o cadastro para ser excluído: ");
+        JOptionPane.showMessageDialog(null,"\nConfira o cadastro para ser excluído: ");
         cadastro.imprimir();
-        System.out.println("\nDeseja excluir? (s/n)");
-        leitor.nextLine();
-        String confirma = leitor.nextLine();
+        String confirma = JOptionPane.showInputDialog("\nDeseja excluir? (s/n)");
         if (confirma.equalsIgnoreCase("s")){
             cadastros.remove(cadastro);
-            System.out.println("\nCadastro removido com sucesso.");
+            JOptionPane.showMessageDialog(null,"\nCadastro removido com sucesso.");
         } else{
-            System.out.println("Retornando ao menu anterior. ");
+            JOptionPane.showMessageDialog(null,"Retornando ao menu anterior. ");
         }
     }
 
     protected static String inputNome(){
     String nome;
-    System.out.println("Digite o nome para adicionar ao cadastro: ");
-    nome = leitor.nextLine();
+    nome = JOptionPane.showInputDialog("\nDigite o nome para adicionar ao cadastro: ");
     return nome;
     }
 
     protected static int inputCodigo(){
-        int codigo = 0;
-        boolean entradaValida = false;
-        while (!entradaValida){
-        System.out.println("\nDigite o código de matrícula: ");        
-        try {
-            codigo = leitor.nextInt();
-            entradaValida = true;
-        }
-        catch (InputMismatchException ime){
-            System.out.println("\nDigite um número inteiro para o código de matrícula. ");
-            leitor.nextLine();
-        }
-        }
+        String input;
+        int codigo;
+        input = JOptionPane.showInputDialog("Digite o código: ");
+        codigo = Menus.retornaInteiro(input);    
         return codigo;
     }
 
